@@ -1,0 +1,28 @@
+.card-container {
+  margin: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 5px 1px gray;
+  max-width: 300px;
+  img {
+    width: 100%;
+    max-height: 50%;
+    object-fit: cover;
+  }
+  .product-description {
+    padding: 5px;
+  }
+  #add {
+    background-color: rgb(13, 59, 13);
+  }
+  #buy {
+    background-color: rgb(73, 73, 231);
+  }
+  button {
+    margin: 0;
+    border: none;
+    outline: none;
+    width: 50%;
+    color: white;
+    height: 50px;
+  }
+}

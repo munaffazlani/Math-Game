@@ -1,0 +1,18 @@
+*, ::before, ::after {
+  
+  box-sizing: border-box;
+}
+
+body {
+  box-sizing: border-box;
+}
+button{
+  padding: 10px;
+  margin: 2px;
+  font-size: 20px;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
