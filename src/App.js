@@ -6,7 +6,7 @@ const randomNumGen = (base = 10) => {
   return Math.floor(Math.random() * base);
 };
 
-const randomNumList = (base = 10, x = 2) => {
+const randomNumList = (base = 20, x = 2) => {
   let ListOfNum = [];
   for (let i = x; i > 0; i--) {
     ListOfNum.push(randomNumGen(base));
@@ -24,10 +24,10 @@ function App() {
   //const [answer, setAnswer] = useState("");
 
   //Input Helper Functions
-  const handleDigit = (n) => (!l ? setL(n) : op && setR(n));
+  const handleDigit = (n) => (!l ? setL(n) : (l && !op ? setL(n) : setR(n)));
   const handleOp = (n) => l && setOp(n);
 
-  //Calculation Helper
+  //Calculation Helper  
   const answer = r && eval(`${l}${op}${r}`);
 
   //Button Changers
@@ -44,23 +44,24 @@ function App() {
 
   const answerGenerator = () => {
     const x = randomNumGen(4);
+    const min = Math.min(randomList[0], randomList[1]);
+    const max = Math.max(randomList[0], randomList[1]);
     if (x === 0) {
-      return randomList[0] + randomList[1];
+      return min + max;
     }
     if (x === 1) {
-      return randomList[0] - randomList[1];
+      return max - min;
     }
     if (x === 2) {
-      return randomList[0] * randomList[1];
+      return max * min;
     }
     if (x === 3) {
       if (randomList[1] === 0) {
-        answerGenerator();
+        return max - min;
       }
-      const ans = randomList[0] / randomList[1];
+      const ans = max / min;
       if (ans % 1 !== 0) {
-        console.log(ans);
-        answerGenerator();
+        return max - min;
       }
       if (ans % 1 === 0) {
         return ans;
@@ -69,7 +70,8 @@ function App() {
   };
 
   useEffect(() => {
-    setNum(answerGenerator());
+    const makeItNum = answerGenerator();
+    setNum(makeItNum);
     restartSame();
   }, [randomList]);
   return (
@@ -87,7 +89,6 @@ function App() {
     </div> */}
 
       <div>
-        {num}
         <h1>{`Make it ${num}`}</h1>
         <div>
           <button onClick={() => handleOp("+")}>+</button>
